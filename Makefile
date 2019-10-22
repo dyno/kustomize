@@ -7,6 +7,9 @@ BASE := $(KUSTOM_HOME)/base
 WORDPRESS_HOME := $(BASE)/wordpress
 MYSQL_HOME := $(BASE)/mysql
 
-.PHONY: wordpress
-wordpress:
-	kustomize build $(WORDPRESS_HOME) | bat --language=yaml --style=plain --paging=never
+
+mirantis/%: FORCE
+	kustomize build $@ | bat --language=yaml --style=plain --paging=never
+
+.PHONY: FORCE
+FORCE:
